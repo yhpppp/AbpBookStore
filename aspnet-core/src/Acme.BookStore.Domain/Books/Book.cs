@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace Acme.BookStore.Books
 {
     public class Book: AuditedAggregateRoot<Guid>
     {
+        [Column("Name")]
         public string Name { get; set; }
         public BookType Type { get; set; }
         public DateTime PublishDate { get; set; }
