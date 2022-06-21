@@ -92,6 +92,9 @@ public class BookStoreDbContext :
             b.ToTable(BookStoreConsts.DbTablePrefix + "Books", BookStoreConsts.DbSchema);
             b.ConfigureByConvention();
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+
+            // one-to-many
+            b.HasOne<Author>().WithMany().HasForeignKey(x => x.AuthorId).IsRequired();
         });
 
         builder.Entity<Author>(b =>
@@ -103,6 +106,7 @@ public class BookStoreDbContext :
             b.Property(x => x.Name).IsRequired().HasMaxLength(AuthorConsts.MaxNameLength);
 
             b.HasIndex(x => x.Name);
-;        });
+            ;
+        });
     }
 }
